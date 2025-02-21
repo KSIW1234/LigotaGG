@@ -268,7 +268,6 @@
 
         </style>
         <script>
-            
 document.addEventListener("DOMContentLoaded", function () {
     const modal = document.getElementById("purchase-modal");
 
@@ -301,7 +300,7 @@ function closeForm() {
     document.querySelector("#purchase-modal input[placeholder='Fivem Hex']").value = "";
 }
 
-function sendPurchase() {
+async function sendPurchase() {
     const discordID = document.querySelector("#purchase-modal input[placeholder='Discord ID']").value.trim();
     const steamNick = document.querySelector("#purchase-modal input[placeholder='Steam Nick']").value.trim();
     const fivemHex = document.querySelector("#purchase-modal input[placeholder='Fivem Hex']").value.trim();
@@ -341,24 +340,27 @@ function sendPurchase() {
         }]
     };
 
-    fetch(webhookURL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-    }).then(response => {
+    try {
+        const response = await fetch(webhookURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+
         if (response.ok) {
             alert("✅ Zakup potwierdzony! Wysłano do administracji.");
             closeForm();
+
+            window.location.href = `https://www.youtube.com/${encodeURIComponent(product)}&discord=${encodeURIComponent(discordID)}&steam=${encodeURIComponent(steamNick)}&fivem=${encodeURIComponent(fivemHex)}`;
         } else {
             alert("❌ Błąd wysyłania zamówienia. Sprawdź webhook.");
             console.error("❌ Błąd wysyłania: ", response);
         }
-    }).catch(error => {
+    } catch (error) {
         alert("❌ Wystąpił problem z połączeniem!");
         console.error("❌ Błąd:", error);
-    });
+    }
 }
-        
         </script>
     <title>Moja Strona - Sklep LigotaGG</title>
 <meta name="description" content="Oficjalny sklep LigotaGG. Kup rangi, unbany i więcej!">
