@@ -339,27 +339,6 @@ async function sendPurchase() {
         }]
     };
 
-    try {
-        const response = await fetch(webhookURL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-        });
-
-        if (response.ok) {
-            alert("✅ Zakup potwierdzony! Wysłano do administracji.");
-            closeForm();
-
-            window.location.href = `https://www.youtube.com/${encodeURIComponent(product)}&discord=${encodeURIComponent(discordID)}&steam=${encodeURIComponent(steamNick)}&fivem=${encodeURIComponent(fivemHex)}`;
-        } else {
-            alert("❌ Błąd wysyłania zamówienia. Sprawdź webhook.");
-            console.error("❌ Błąd wysyłania: ", response);
-        }
-    } catch (error) {
-        alert("❌ Wystąpił problem z połączeniem!");
-        console.error("❌ Błąd:", error);
-    }
-}
             
         </script>
     <title>Moja Strona - Sklep LigotaGG</title>
