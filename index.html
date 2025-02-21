@@ -360,55 +360,7 @@ async function sendPurchase() {
         console.error("❌ Błąd:", error);
     }
 }
-            function sendPurchase() {
-    const discordID = document.querySelector("#purchase-modal input[placeholder='Discord ID']").value.trim();
-    const steamNick = document.querySelector("#purchase-modal input[placeholder='Steam Nick']").value.trim();
-    const fivemHex = document.querySelector("#purchase-modal input[placeholder='Fivem Hex']").value.trim();
-    const product = document.getElementById("product-name").innerText;
-
-    if (!/^\d+$/.test(discordID)) {
-        alert("❌ Błąd: Discord ID może zawierać tylko cyfry!");
-        return;
-    }
-    if (!discordID || !steamNick || !fivemHex) {
-        alert("❌ Błąd: Wszystkie pola muszą być wypełnione!");
-        return;
-    }
-
-    const webhookURL = "https://discord.com/api/webhooks/1342215580924645417/2AQQl3aqdMzOWZ7lJbasXh6uotWm_fAu-kZWpci1HyTqZvwSJ9TA-MuWmAUjYmi1uKrJ";
-    const roleID = "1322225647602630773";
-
-    const payload = {
-        content: `<@&${roleID}>\n📢 **Nowe zamówienie!** 🚀\n\n` +
-                 `🛒 **Produkt:** ${product}\n` +
-                 `🔹 **Discord ID:** ${discordID}\n` +
-                 `🎮 **Steam Nick:** ${steamNick}\n` +
-                 `🆔 **Fivem Hex:** ${fivemHex}`,
-    };
-
-    fetch(webhookURL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-    }).then(response => {
-        if (response.ok) {
-            alert("✅ Zakup potwierdzony! ");
-
-            // **Jeśli kupiono "Koszulkę Organizacji" → Pokaż Stripe**
-            if (product.toLowerCase() === "koszulka organizacji") {
-                document.getElementById("stripe-container").style.display = "block";
-            } else {
-                closeForm();
-            }
-
-        } else {
-            alert("❌ Błąd wysyłania zamówienia. Sprawdź webhook.");
-        }
-    }).catch(error => {
-        alert("❌ Wystąpił problem z połączeniem!");
-    });
-}
-
+            
         </script>
     <title>Moja Strona - Sklep LigotaGG</title>
 <meta name="description" content="Oficjalny sklep LigotaGG. Kup rangi, unbany i więcej!">
@@ -514,15 +466,6 @@ async function sendPurchase() {
                     <p>15 PLN</p>
                     <button class="buy-button" data-product="Koszulka organizacji">Kup Teraz</button>
                 </div>
-                <div id="stripe-container" style="display:none; text-align:center; margin-top:20px;">
-    <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-    
-    <stripe-buy-button
-        buy-button-id="buy_btn_1Qv4T1BDiHwYVy3ATA92PW7Z"
-        publishable-key="pk_live_51Qv4JfBDiHwYVy3AXlzKkdboHLZ2xx4YEM2yvxjznp9Sp79vZl3QM1ghF1hCjHoEMHGJIpMRApf7ha2HBBQQMhyU00ab65polw">
-    </stripe-buy-button>
-</div>
-
                 <div class="product">
                     <h3>Limitowane auto z serwera</h3>
                     <p>30 PLN</p>
