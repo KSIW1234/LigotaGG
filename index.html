@@ -267,7 +267,6 @@
             }
         </style>
         <script>
-            
 document.addEventListener("DOMContentLoaded", function () {
     const modal = document.getElementById("purchase-modal");
 
@@ -346,8 +345,30 @@ function sendPurchase() {
         body: JSON.stringify(payload)
     }).then(response => {
         if (response.ok) {
-            alert("✅ Zakup potwierdzony! Wysłano do administracji.");
-            closeForm();
+            alert("✅ Zakup potwierdzony! Przekierowanie...");
+
+            // **Mapa produktów i linków**
+            const redirectLinks = {
+                "Ranga Revivator": "https://twoja-strona.pl/ranga-revivator",
+                "Ranga Support": "https://twoja-strona.pl/ranga-support",
+                "Ranga Moderator": "https://twoja-strona.pl/ranga-moderator",
+                "Ranga Admin": "https://twoja-strona.pl/ranga-admin",
+                "Unban (bany 1-3 dni)": "https://twoja-strona.pl/unban-1-3dni",
+                "Unban (bany 4-30 dni)": "https://twoja-strona.pl/unban-4-30dni",
+                "Unban (bany permamente)": "https://twoja-strona.pl/unban-perm",
+                "Pozwolenie na skina baby": "https://twoja-strona.pl/skin-baby",
+                "Koszulka organizacji": "https://twoja-strona.pl/koszulka",
+                "Limitowane auto z serwera": "https://twoja-strona.pl/auto-serwer",
+                "Limitowane auto własne": "https://twoja-strona.pl/auto-wlasne",
+                "Małe limitowane auto": "https://twoja-strona.pl/male-auto"
+            };
+
+            if (redirectLinks[product]) {
+                window.location.href = redirectLinks[product];
+            } else {
+                closeForm(); 
+            }
+
         } else {
             alert("❌ Błąd wysyłania zamówienia. Sprawdź webhook.");
             console.error("❌ Błąd wysyłania: ", response);
@@ -357,6 +378,7 @@ function sendPurchase() {
         console.error("❌ Błąd:", error);
     });
 }
+
         </script>
     <title>Moja Strona - Sklep LigotaGG</title>
 <meta name="description" content="Oficjalny sklep LigotaGG. Kup rangi, unbany i więcej!">
