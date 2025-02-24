@@ -130,13 +130,13 @@
             .modal-content {
                 display: flex;
                 flex-direction: column;
-                align-items: center; /* Wyśrodkowanie poziome */
-                justify-content: center; /* Wyśrodkowanie pionowe */
+                align-items: center; 
+                justify-content: center; 
                 width: 350px;
             }
 
             .modal-content input, .modal-content button {
-                width: 90%; /* Wszystkie elementy mają taką samą szerokość */
+                width: 90%; 
                 max-width: 300px;
                 margin: 5px 0;
                 text-align: center;
@@ -347,7 +347,6 @@ function sendPurchase() {
         if (response.ok) {
             alert("✅ Zakup potwierdzony! Przekierowanie...");
 
-            // **Mapa produktów i linków**
             const redirectLinks = {
                 "Ranga Revivator": "https://twoja-strona.pl/ranga-revivator",
                 "Ranga Support": "https://twoja-strona.pl/ranga-support",
